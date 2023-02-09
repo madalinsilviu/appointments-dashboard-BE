@@ -26,4 +26,16 @@ public class AppointmentRestController {
     public ResponseEntity<List<Appointment>> getAll() {
         return ResponseEntity.ok(this.appointmentService.getAllAppointments());
     }
+
+    @PutMapping("/{appointmentId}")
+    public ResponseEntity<Void> update(final @PathVariable String appointmentId, final @RequestBody AppointmentDTO dto) {
+        this.appointmentService.updateAppointment(appointmentId,dto);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{appointmentId}")
+    public ResponseEntity<Void> delete(final @PathVariable String appointmentId) {
+        this.appointmentService.removeAppointment(appointmentId);
+        return ResponseEntity.ok().build();
+    }
 }
